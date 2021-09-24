@@ -6,8 +6,8 @@ export const getComments = (movieId, signal) =>
     signal,
   });
 
-export const addComment = ({ movieId, rating, content, token }) =>
-  fetchJson(`${BASE_URL}/movie/comment`, {
+export const addComment = ({ movieId, rating, content, token }) => {
+  return fetchJson(`${BASE_URL}/movie/comment`, {
     method: "POST",
     body: {
       rating,
@@ -18,9 +18,10 @@ export const addComment = ({ movieId, rating, content, token }) =>
       Authorization: `Bearer ${token}`,
     },
   });
+}
 
 export const deleteComment = ({ commentId, token }) => {
-  fetchJson(`${BASE_URL}/movie/comment/${commentId}`, {
+  return fetchJson(`${BASE_URL}/movie/comment/${commentId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
