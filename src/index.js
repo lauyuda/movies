@@ -15,14 +15,14 @@ import { ShoppingCart } from "./pages/shopping-cart";
 import { PageNotFound } from "./pages/404";
 import { Career } from "./pages/career";
 import { Marketplace } from "./pages/marketplace";
+import { MoviePublic } from "./pages/movie-public";
+import { MovieDetailsPage } from "./pages/movie-details";
+import { RegisterPage } from "./pages/register";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000,
-    },
-  },
-});
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <BrowserRouter>
@@ -32,6 +32,9 @@ ReactDOM.render(
           <Switch>
             <Route path="/login">
               <LoginPage />
+            </Route>
+            <Route path="/register">
+              <RegisterPage />
             </Route>
             <Route path="/career/:jobId">
               <JobDetailsPage />
@@ -54,6 +57,12 @@ ReactDOM.render(
             <Route path="/shopping-cart">
               <ShoppingCart />
             </Route>
+            <Route path="/movie/:movieId">
+              <MovieDetailsPage />
+            </Route>
+            <Route path="/movie">
+              <MoviePublic />
+            </Route>
             <Route path="/" exact>
               <div className="p-16">
                 <h1 className="text-4xl">Home</h1>
@@ -65,6 +74,7 @@ ReactDOM.render(
           </Switch>
         </AppShell>
       </AuthProvider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   </BrowserRouter>,
   document.querySelector("#root")

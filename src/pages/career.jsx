@@ -16,9 +16,9 @@ const validationSchema = Yup.object({
 
 export const Career = () => {
   const titleInputRef = React.useRef();
-
   const { page, setPage, data: jobs } = useJobs();
   const createJobMutation = useCreateJobMutation();
+  
   const formik = useFormik({
     initialValues: {
       title: "",

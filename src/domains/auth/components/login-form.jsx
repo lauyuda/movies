@@ -2,12 +2,15 @@ import { Button } from "components/button";
 import { TextField } from "components/text-field";
 import * as React from "react";
 import { useLogin } from "../auth.state";
+import { useHistory } from "react-router-dom";
+
 
 export const LoginForm = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [status, setStatus] = React.useState("idle");
   const login = useLogin();
+  const history = useHistory();
 
   return (
     <div className="max-w-md mx-auto m-6 shadow">
@@ -15,7 +18,7 @@ export const LoginForm = () => {
         onSubmit={(ev) => {
           ev.preventDefault();
           setStatus("loading");
-          login({ email, password }).catch(() => setStatus("error"));
+          login({ email, password }).then(() => history.push("/movie")).catch(() => setStatus("error"));
         }}
         className="p-6"
       >
