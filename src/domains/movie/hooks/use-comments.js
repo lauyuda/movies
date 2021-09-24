@@ -27,7 +27,7 @@ export const useDeleteCommentMutation = () => {
     // onSuccess: () => queryClient.invalidateQueries("comment"),
     onSuccess: () => setTimeout(function () {
       queryClient.invalidateQueries("comment")
-    }, 100)
+    }, 500)
 
   });
 };
